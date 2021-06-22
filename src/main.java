@@ -4,6 +4,7 @@ import java.util.Queue;
 
 import lexer.Lexer;
 import lexer.Token;
+import sLR.SLRexample;
 import tareaImplementacionNoRecursiva.Ejemplo2;
 import tareaImplementacionrecursiva.ArithmeticExpression;
 import tareaImplementacionrecursiva.Ejemplo;
@@ -23,8 +24,8 @@ public class main {
 		}
 		*/
 		
-		
-		Ejemplo2.mostrarResultado();
+		//Revisar paquete sLR
+		SLRexample.mostrarResultado();
 		
 		
 	}

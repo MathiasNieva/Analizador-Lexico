@@ -9,5 +9,6 @@ public class Tag {
 		AND = 270, OR = 271,
 		GLYPH = 272,
 		ERROR = 273,
-		BEGIN = 274, END = 275;
+		BEGIN = 274, END = 275,
+		BASIC = 276;
 }
