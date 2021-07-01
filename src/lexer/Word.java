@@ -10,7 +10,7 @@ public class Word extends Token {
 
 	@Override
 	public String toString() {
-		return "Word [lexema=" + lexema + ", Tag=" + tag + "]";
+		return lexema;
 	}
 	
 	public static final Word 
@@ -20,6 +20,6 @@ public class Word extends Token {
 		True = new Word( Tag.TRUE, "true" ), False = new Word( Tag.FALSE, "false" ),
 		atune = new Word(Tag.ATUNE, "Atune"), rhythm = new Word(Tag.RHYTHM, "Rhythm"),
 		of = new Word(Tag.OF, "Of"), antici = new Word(Tag.ANTICIPATION, "Anticipation"),
-		consid = new Word(Tag.CONSIDERATION, "Consideraton"), glyph = new Word(Tag.GLYPH, "Glyph"),
-		begin = new Word(Tag.BEGIN, "Begin"), end = new Word(Tag.END, "End");
+		consid = new Word(Tag.CONSIDERATION, "Consideration"),
+		temp = new Word(Tag.TEMP, "t"), Else = new Word(Tag.ELSE, "else"), Break = new Word(Tag.BREAK, "break");
 }

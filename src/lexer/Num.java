@@ -10,7 +10,7 @@ public class Num extends Token {
 
 	@Override
 	public String toString() {
-		return "Num [value=" + value + "]";
+		return ""+value;
 	}
 	
 }

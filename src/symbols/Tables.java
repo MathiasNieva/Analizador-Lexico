@@ -2,6 +2,7 @@ package symbols;
 
 import java.util.Hashtable;
 
+import intercode.Id;
 import lexer.Token;
 
 public class Tables {

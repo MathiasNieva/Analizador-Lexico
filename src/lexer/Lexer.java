@@ -2,16 +2,21 @@ package lexer;
 import java.io.*;
 import java.util.*;
 
+import symbols.Type;
+
 public class Lexer {
 	public static int line = 1;
 	private char peek = ' ';
 	private Hashtable words = new Hashtable();
 	
+	private File file;
+	private BufferedReader br;
+	
 	private void reserve(Word t) {
 		words.put(t.lexema, t);
 	}
 	
-	public Lexer() {
+	public Lexer(String path) {
 		reserve(Word.and);
 		reserve(Word.or);
 		reserve(Word.True);
@@ -21,11 +26,25 @@ public class Lexer {
 		reserve(Word.rhythm);
 		reserve(Word.antici);
 		reserve(Word.consid);
-		reserve(Word.glyph);
+		reserve(Word.Else);
+		reserve(Word.Break);
+		reserve(Type.Char);
+		reserve(Type.Number);
+		reserve(Type.Bool);
+		
+		file = new File(getClass().getResource(path).getFile());
+		try {
+			br = new BufferedReader(new FileReader(file));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void readChar() throws IOException {
-		peek = (char)System.in.read();
+		//peek = (char)System.in.read();
+		peek = (char)br.read();
+		
 	}
 	
 	boolean readChar(char c) throws IOException {
@@ -38,7 +57,11 @@ public class Lexer {
 	public Token scan() throws IOException {
 		for(;; readChar()) {
 			if (peek == ' ' || peek == '\t') continue;
-			else if (peek == '\n') line = line + 1;
+			else if (peek == '\r') {
+				readChar();
+				if (peek == '\n') line = line + 1;
+				else break;
+			}
 			else break;
 		}
 		
@@ -59,26 +82,15 @@ public class Lexer {
 				v = 10*v + Character.digit(peek, 10);
 				readChar();
 			} while (Character.isDigit(peek));
-			if (peek != '.')return new Error();
-			float x = v; float d = 10;
-			for (;;) {
-				readChar();
-				if (!Character.isDigit(peek)) break;
-				x = x + Character.digit(peek, 10) / d; d = d*10;
+			if (peek == '.') {                       //retornar un token normal si no????
+				float x = v; float d = 10;
+				for (;;) {
+					readChar();
+					if (!Character.isDigit(peek)) break;
+					x = x + Character.digit(peek, 10) / d; d = d*10;
+				}
+				return new Num(x);
 			}
-			return new Num(x);
-		}
-		
-		if (peek == '"') {
-			StringBuffer b = new StringBuffer();
-			do {
-				b.append(peek);
-				readChar();;
-				if (peek == '\n') return new Error();
-			} while (peek != '"');
-			b.append(peek);
-			String s = b.toString();
-			return new Word(Tag.STRING, s);
 		}
 		
 		if (Character.isLetter(peek)) {

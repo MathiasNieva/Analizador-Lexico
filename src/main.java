@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import Parser.Parser;
 import lexer.Lexer;
 import lexer.Token;
 import sLR.SLRexample;
@@ -25,7 +26,19 @@ public class main {
 		*/
 		
 		//Revisar paquete sLR
-		SLRexample.mostrarResultado();
+		//SLRexample.mostrarResultado();
+		
+		Lexer lex = new Lexer("/auxiliary/input.txt");
+		
+		try {
+			Parser parser = new Parser(lex);
+			parser.program();
+			System.out.println('\n');
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		
 	}

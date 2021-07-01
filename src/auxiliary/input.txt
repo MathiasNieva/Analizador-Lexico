@@ -1,0 +1,31 @@
+{
+	number i;
+	i = 2.0;
+	i = i + 5.0;
+}
+
+{ 
+	number i;
+	number j;
+	number v;
+	number x;
+	i = 1.0;
+	j = 5.0;
+	Rhythm Of Consideration ( true ) { 
+		i = i+1.0;
+		Rhythm Of Anticipation ( i >= j and j > 4.0 ) break;
+	}
+}
+
+{
+	number i;
+	i = 2.0;
+	Rhythm Of Consideration ( i<=4.0 ){ 
+		i = i+1.0;
+	}
+}
+
+
+
+
+
